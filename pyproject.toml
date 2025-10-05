@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vendas-cli"
+version = "0.1.0"
+authors = [
+    { name = "Andrews Schulla Fernandes", email = "andrews.fernandesx@gmail.com" },
+]
+description = "Vendas-cli para ler e filtrar arquivos CSV"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+keywords = ["cli", "tool"]
+
+# Dependências do seu projeto
+dependencies = [
+    "typer[all]",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[project.scripts]
+vendas-cli = "cli.main:main"
