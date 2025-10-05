@@ -36,10 +36,39 @@ class CSVProcessor(Reader):
         self.quantity_per_product: Dict[str, int] = {}
 
     def process_data(self) -> Dict[str, Any]:
+        """
+        Processa o arquivo CSV e retorna um dicionário com os resultados agregados.
+        
+        Chama o método process_csv_rows() para processar as linhas do arquivo CSV e,
+        em seguida, chama o método aggregate_results() para calcular os resultados
+        agregados e retorná-los como um dicionário.
+        
+        Returns:
+            Dict[str, Any]: Um dicionário com os resultados agregados.
+        """
         self.process_csv_rows()
         return self.aggregate_results()
 
     def process_csv_rows(self):
+        """
+        Processa as linhas do arquivo CSV e atualiza os atributos de receita e quantidade.
+
+        Lê o arquivo CSV e itera sobre as linhas do arquivo. Para cada linha, verifica se a
+        data de venda está dentro do filtro de data e, se sim, atualiza os atributos de
+        receita e quantidade.
+
+        Se houver um erro de formatação na linha ou se a data de venda estiver fora do
+        filtro de data, a linha é ignorada e o processo continua.
+
+        Se houver um erro de leituraa do arquivo, o programa é finalizado com um código de
+        erro 1.
+
+        Se houver um erro de formatação de data ou se houver uma coluna ausente, o
+        programa é finalizado com um código de erro 1.
+
+        Returns:
+            None: Nenhum valor é retornado.
+        """
         filter_start_date, filter_end_date = datetime_treat(
             self.start_date, self.end_date)
         try:
@@ -89,6 +118,14 @@ class CSVProcessor(Reader):
             sys.exit(1)
 
     def aggregate_results(self) -> Dict[str, Any]:
+        """
+        Agrega os resultados da leitura do arquivo CSV e retorna um dicionário com as seguintes chaves:
+        - report_date: Data e hora da geração do relatório.
+        - filter_dates: Dicionário com as datas de início e fim utilizadas no filtro.
+        - total_global_revenue: Valor total de todas as vendas.
+        - best_selling_product: Dicionário com o produto mais vendido e a quantidade total de unidades vendidas.
+        - revenue_per_product: Lista de dicionários com produtos e respectivas receitas.
+        """
         best_selling_product = "None"
         best_selling_quantity = 0
         if self.quantity_per_product:

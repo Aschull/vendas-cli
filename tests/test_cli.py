@@ -2,8 +2,6 @@ import pytest
 import sys
 from src.cli.parsers import main
 
-# Teste de integração simples para o CLI
-# Usa monkeypatch para simular argumentos de linha de comando
 
 def test_run_cli_basic(monkeypatch):
     test_args = ["cli.py", "vendas_exemplo.csv"]
