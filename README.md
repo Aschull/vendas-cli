@@ -15,6 +15,7 @@
   - vendas-cli vendas_exemplo.csv
   - vendas-cli vendas_exemplo.csv --data_inicio 2025-01-05 --data_fim 2025-01-10
   - vendas-cli vendas_exemplo.csv --data_inicio 2025-01-05 --data_fim 2025-01-10 --format json
+  - Para formato texto, pode-se informar --format text ou simplesmente nao informar nenhum format, que por padrao sera retornado em text.
 
 ## RODAR LOCALMENTE
   - Clonar o projeto: https://github.com/Aschull/vendas-cli#
