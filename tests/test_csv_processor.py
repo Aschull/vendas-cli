@@ -1,5 +1,5 @@
 import pytest
-from src.core.csv_processor import CSVProcessor
+from core.csv_processor import CSVProcessor
 
 def test_process_data_basic(tmp_path):
     csv_content = """produto,quantidade,preco_unitario,data_venda\nCamiseta,2,49.9,2025-01-01\nCalça,1,99.9,2025-01-02\n"""
