@@ -1,4 +1,4 @@
-from src.utils import helpers
+from utils import helpers
 
 def test_datetime_treat_valid():
     start, end = helpers.datetime_treat('2025-01-01', '2025-01-05')

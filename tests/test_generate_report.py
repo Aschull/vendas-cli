@@ -1,5 +1,5 @@
 import json
-from src.reports.sales_report import SalesReport
+from reports.sales_report import SalesReport
 
 def test_generate_report_text_output(capsys):
     data = {

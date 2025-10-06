@@ -1,8 +1,8 @@
 import pytest
 import sys
-from src.cli.parsers import CliParser
-from src.core.csv_processor import CSVProcessor
-from src.reports.sales_report import SalesReport
+from cli.parsers import CliParser
+from core.csv_processor import CSVProcessor
+from reports.sales_report import SalesReport
 
 
 def test_run_cli_basic(monkeypatch):

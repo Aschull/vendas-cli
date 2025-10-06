@@ -1,9 +1,7 @@
 import argparse
 import logging
-from core.csv_processor import CSVProcessor
-from reports.sales_report import SalesReport
-from src.interfaces.reader_interface import Reader
-from src.interfaces.report_interface import Report
+from interfaces.reader_interface import Reader
+from interfaces.report_interface import Report
 
 
 class CliParser:
@@ -49,9 +47,4 @@ class CliParser:
         self.csv_processor.set_date_filters(args.data_inicio, args.data_fim)
         results = self.csv_processor.process_data()
 
-        # csv_processor = CSVProcessor(
-		# 	file_path=args.csv_file, start_date=args.data_inicio, end_date=args.data_fim)
-        # results = csv_processor.process_data()
-
-        # SalesReport(data=results, report_format=args.format)
         self.sales_report.generate(data=results, report_format=args.format)
