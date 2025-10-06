@@ -19,7 +19,7 @@
 
 
 ## Rodar Cobertura de codigo
- - pytest --cov=. --cov-report=html
+ > pytest --cov=. --cov-report=html
 
 
 ## INSTALACAO

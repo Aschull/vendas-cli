@@ -21,7 +21,7 @@ class CSVProcessor(Reader):
 
     def __init__(
         self,
-        file_path: str,
+        file_path: str = "",
         start_date: Optional[str] = None,
         end_date: Optional[str] = None,
     ):
@@ -34,6 +34,31 @@ class CSVProcessor(Reader):
         self.total_global_revenue: float = 0.0
         self.revenue_per_product: Dict[str, float] = {}
         self.quantity_per_product: Dict[str, int] = {}
+
+    def set_file_path(self, file_path: str) -> None:
+        """
+        Define o caminho para o arquivo CSV a ser processado.
+        """
+        if not isinstance(file_path, str) or not file_path:
+            raise ValueError("O caminho do arquivo não pode ser vazio.")
+        self._data_path = file_path
+
+    def set_date_filters(
+        self,
+        start_date: Optional[str] = None,
+        end_date: Optional[str] = None
+    ) -> None:
+        """
+        Define as datas de início e fim para filtragem dos dados.
+        """
+        self.start_date = start_date
+        self.end_date = end_date
+
+    def set_date_format(self, date_format: str) -> None:
+        """
+        Define o formato de data esperado no arquivo CSV.
+        """
+        self.date_format = date_format
 
     def process_data(self) -> Dict[str, Any]:
         """
@@ -135,12 +160,12 @@ class CSVProcessor(Reader):
 
         sorted_revenue = sorted(
             self.revenue_per_product.items(), key=lambda item: item[1], reverse=True)
-        product_revenue_list = parser_to_dict_list(sorted_revenue)
+        product_list = parser_to_dict_list(sorted_revenue)
 
         return {
             "report_date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "filter_dates": {"start": self.start_date, "end": self.end_date},
             "total_global_revenue": round(self.total_global_revenue, 2),
             "best_selling_product": {"product": best_selling_product, "quantity": best_selling_quantity},
-            "revenue_per_product": product_revenue_list
+            "revenue_per_product": product_list
         }
