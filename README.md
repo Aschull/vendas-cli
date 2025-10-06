@@ -42,7 +42,7 @@
 
 
 ## Rodar cobertura de codigo
- > pytest --cov=. --cov-report=html
+ > pytest
 
 ## Desinstalar
  > pipx unistall vendas-cli
